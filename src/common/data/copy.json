@@ -56,12 +56,9 @@
     },
     "timeline": {
       "zoomLevels": [
-        { "label": "20 años", "duration": 10512000 },
-        { "label": "2 años", "duration": 1051200 },
-        { "label": "3 meses", "duration": 129600 },
-        { "label": "3 días", "duration": 4320 },
-        { "label": "12 horas", "duration": 720 },
-        { "label": "1 hora", "duration": 60 }
+        { "label": "1 mes", "duration": 40320 },
+        { "label": "2 semanas", "duration": 20160 },
+        { "label": "1 semana", "duration": 10080 }
       ],
       "labels_title": "Testimonios",
       "labels": [
@@ -116,13 +113,11 @@
         ]
       },
       "default": {
-        "header": "Navigating the Platform",
+        "header": "About the Map",
         "intro": [
-          "Each small **dot** represents a **datapoint**, or incident. Click on a dot to see details. Hover over a larger ‘**cluster**’ dot to see how many events it represents.",
-          "Zoom in either with a mouse-scroll or by clicking a ‘cluster’ dot.",
-          "Use **filters** and **categories** to segment the data. Selecting certain filters and categories will show only the datapoints that relate to them. If no filters or categories are selected, all the datapoints are displayed.",
-          "Selecting more than one filter will introduce colour-coded datapoints, which allow you to compare types of incident across time and space. This feature works up to a maximum of six filters.",
-          "Once you have clicked on an event, use the left and right arrows to move back and forward day by day. You can also click and drag anywhere on the timeline. Use the handles on the right to select a date range."
+          "Each post has been categorized by the type of violation according to the Inter-American Commission on Human Rights' nomenclature. A confidence level has also been assigned based on the source of the information. Users can explore interactive features such as filters and content of the original post. The map will be regularly updated to reflect the latest information.",
+          "You can use filter to view incidents related to a specific potential Human Rights violation",
+          "The timeline below allows you to explore the events based on the time that they were reported on twitter, not the time of the incident."
         ],
         "notation": "Combinations of colours within a circle indicate multiple events in a single location.",
         "arrows": "Use the left/right arrows on the keboard to move back and forth between events in time."
