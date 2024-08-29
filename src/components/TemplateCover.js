@@ -4,7 +4,7 @@ import { Player } from "video-react";
 import { marked } from "marked";
 import MediaOverlay from "./atoms/Media";
 // import falogo from "../assets/fa-logo.png";
-import bcatlogo from "../assets/bellingcat-logo.png";
+import bcatlogo from "../assets/github-white.png";
 const MEDIA_HIDDEN = -2;
 
 /**
@@ -167,8 +167,11 @@ class TemplateCover extends React.Component {
             {/*   alt="Forensic Architecture logo" */}
             {/* /> */}
           </a>
-          <a className="cover-logo-container" href="https://bellingcat.com">
-            <img className="cover-logo" src={bcatlogo} alt="Bellingcat logo" />
+          <a
+            className="cover-logo-container"
+            href="https://github.com/mamagallina"
+          >
+            <img className="cover-logo" src={bcatlogo} alt="Github" />
           </a>
         </div>
         <div className="cover-content">
