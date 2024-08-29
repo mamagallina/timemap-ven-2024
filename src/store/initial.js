@@ -7,10 +7,10 @@ import { DEFAULT_TAB_ICONS } from "../common/constants";
 
 const isSmallLaptop = window.innerHeight < 800;
 const mapIniital = {
-  anchor: [31.356397, 34.784818],
-  startZoom: 11,
+  anchor: [8.130912119045295, -66.63830778451526],
+  startZoom: 7,
   minZoom: 2,
-  maxZoom: 16,
+  maxZoom: 15,
   bounds: null,
   maxBounds: [
     [180, -180],
@@ -71,7 +71,7 @@ const initial = {
     cluster: {
       radius: 30,
       minZoom: 2,
-      maxZoom: 16,
+      maxZoom: 15,
     },
     timeline: {
       dimensions: {
@@ -84,15 +84,12 @@ const initial = {
         contentHeight: isSmallLaptop ? 160 : 200,
         width_controls: 100,
       },
-      range: [new Date(2001, 2, 23, 12), new Date(2021, 2, 23, 12)],
+      range: [new Date(2024, 6, 20, 12), new Date(2024, 8, 10, 12)],
       rangeLimits: [new Date(1, 1, 1, 1), new Date()],
       zoomLevels: copy[language].timeline.zoomLevels || [
-        { label: "20 years", duration: 10512000 },
-        { label: "2 years", duration: 1051200 },
-        { label: "3 months", duration: 129600 },
-        { label: "3 days", duration: 4320 },
-        { label: "12 hours", duration: 720 },
-        { label: "1 hour", duration: 60 },
+        { label: "1 month", duration: 40320 },
+        { label: "2 weeks", duration: 20160 },
+        { label: "1 week", duration: 10080 },
       ],
     },
     flags: {
@@ -105,10 +102,11 @@ const initial = {
       isShowingSites: true,
     },
     cover: {
-      title: "project title",
+      title:
+        "## Election Aftershocks \n\n##### Human Rights violations in Venezuela \n##### 2024",
       description:
-        "A description of the project goes here.\n\nThis description may contain markdown.\n\n# This is a large title, for example.\n\n## Whereas this is a slightly smaller title.\n\nCheck out docs/custom-covers.md in the [Timemap GitHub repo](https://github.com/forensic-architecture/timemap) for more information around how to specify custom covers.",
-      exploreButton: "EXPLORE",
+        "This interactive map designed to visualize human rights violations in Venezuela reported in the period following the 2024 presidential election. The information presented is a compilation of posts published on X (formerly Twitter) by internationally recognized human rights organizations in Venezuela with the understanding that many more violations likely remain unreported.\n\nThe map provides a clear view of the human rights violations, with the approximate location of where they took place based on the content of the post. This resource was designed by anonymous collaborators and researchers who met online with the intention to focus attention on critical human rights issues in the post-electoral context in Venezuela, drawing awareness to specific incidents and the broader human rights environment.<br><br> \n\n##### Contact Information and Acknowledgement \n\n##### To contribute to this project you can visit the [GitHub repo](https://forensic-architecture.org/), which was created using the a template from [Forensic Architecture](https://forensic-architecture.org/). For any info please contact us to 2000mamagallina@gmail.com",
+      exploreButton: "EXPLORE THE MAP",
     },
     toolbar: {
       panels: {
@@ -194,7 +192,7 @@ const initial = {
   },
 
   features: {
-    USE_COVER: false,
+    USE_COVER: true,
     USE_ASSOCIATIONS: false,
     USE_SITES: false,
     USE_SOURCES: false,
