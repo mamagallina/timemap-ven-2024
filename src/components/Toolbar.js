@@ -272,7 +272,8 @@ class Toolbar extends React.Component {
     return (
       <div className="toolbar">
         <div className="toolbar-header" onClick={this.props.methods.onTitle}>
-          <p>{title}</p>
+          {/* (mamagallina) antes {title} */}
+          <p>Election Aftershocks: Human Rights violations in Venezuela</p>
         </div>
         <div className="toolbar-tabs">
           <TabList>
