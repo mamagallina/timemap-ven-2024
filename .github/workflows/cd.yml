@@ -1,19 +1,31 @@
-name: CD
 on:
   push:
-    branches: [ main ]
-#  pull_request:
-#    branches: [ develop ]
+    branches: [gh-pages]
 
 jobs:
   build:
+    name: 🐘 Desplegar
     runs-on: ubuntu-latest
-    steps:
-      - name: Trigger CD build
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.CI_DISPATCH_TOKEN }}
-          repository: forensic-architecture/configs
-          event-type: remote-build
-          client-payload: '{"runtime_args": "timemap", "branch": "${GITHUB_REF##*/}"}'
 
+    steps:
+      - name: 🐯 Obtener código del repositorio
+        uses: actions/checkout@v2
+
+      - name: 🐝 Usar Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: 🔨 Hacer build
+        run: |
+          npm install
+          npm run build
+
+      - name: 🦅 Enviar por FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: cerosetenta.uniandes.edu.co
+          username: ${{ secrets.usuario_ftp }}
+          server-dir: especiales/violencia-policial/
+          local-dir: ./build/
+          password: ${{ secrets.clave_ftp }}
