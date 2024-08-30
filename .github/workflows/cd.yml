@@ -24,5 +24,3 @@ jobs:
           repository: forensic-architecture/configs
           event-type: remote-build
           client-payload: '{"runtime_args": "timemap", "branch": "${GITHUB_REF##*/}"}'
-
-
