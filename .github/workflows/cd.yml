@@ -20,7 +20,7 @@ jobs:
       - name: Trigger CD build
         uses: peter-evans/repository-dispatch@v1
         with:
-          repo-token: ${{ secrets.test-timemap }}
+          token: ${{ github.token }}
           repository: forensic-architecture/configs
           event-type: remote-build
           client-payload: '{"runtime_args": "timemap", "branch": "${GITHUB_REF##*/}"}'
