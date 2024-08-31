@@ -1,8 +1,9 @@
-name: CI
+name: CI Workflow
 
 on:
   push:
-    branches: [copia-violencia]
+    branches:
+      - copia-violencia
 
 jobs:
   build:
@@ -39,7 +40,6 @@ jobs:
           server-dir: especiales/violencia-policial/
           local-dir: ./build/
           password: ${{ secrets.clave_ftp }}
-    branches: [ copia-violencia ]
 
   test:
     runs-on: ubuntu-latest
