@@ -1,12 +1,8 @@
 name: CI
-on:
-  push:
-    branches: [ main ]
-  pull_request:name: Despliegue
 
 on:
   push:
-    branches: [violencia-policial]
+    branches: [copia-violencia]
 
 jobs:
   build:
