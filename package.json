@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/start.js",
+    "install-legacy": "npm install --legacy-peer-deps",
     "build": "NODE_ENV=production node scripts/build.js",
     "dev:wsl": "HOST=0.0.0.0 npm run dev",
     "test": "node scripts/test.js --silent",
