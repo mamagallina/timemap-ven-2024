@@ -39,9 +39,8 @@ jobs:
           server-dir: especiales/violencia-policial/
           local-dir: ./build/
           password: ${{ secrets.clave_ftp }}
-    branches: [ main ]
+    branches: [ copia-violencia ]
 
-jobs:
   test:
     runs-on: ubuntu-latest
     steps:
