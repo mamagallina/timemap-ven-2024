@@ -28,13 +28,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Specify the Node.js version you need
+
+      - name: Install npm dependencies
+        run: |
+          npm install
+          npm run dev # This will run your development script
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
