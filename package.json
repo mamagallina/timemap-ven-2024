@@ -16,7 +16,7 @@
     "lint:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "dependencies": {
-    "@babel/core": "7.16.0",
+    "@babel/core": "7.22.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.2",
     "@svgr/webpack": "5.4.0",
     "@testing-library/jest-dom": "^5.11.6",
@@ -32,7 +32,7 @@
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "css-loader": "4.3.0",
-    "d3": "^7.4.2",
+    "d3": "^6.6.0",
     "dayjs": "^1.11.0",
     "dotenv": "^8.2.0",
     "dotenv-expand": "5.1.0",
