@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '12'
 
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       - run: cp example.config.js config.js
       - run: npm test
         env:
