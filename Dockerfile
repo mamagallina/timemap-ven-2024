@@ -1,13 +1,14 @@
-# Use a recent Node.js version that supports globalThis
-FROM node:18-alpine
+FROM mhart/alpine-node:10.11
 
-# Install dependencies
+LABEL authors="Lachlan Kermode <lk@forensic-architecture.org>"
+
+# Install app dependencies
 COPY package.json /www/package.json
-WORKDIR /www
-RUN npm install --legacy-peer-deps
+RUN cd /www; yarn
 
-# Copy the application source
+# Copy app source
 COPY . /www
-
-# Build the application
+WORKDIR /www
 RUN yarn build
+
+# files available to copy at /www/build
