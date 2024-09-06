@@ -4,7 +4,7 @@ LABEL authors="Lachlan Kermode <lk@forensic-architecture.org>"
 
 # Install app dependencies
 COPY package.json /www/package.json
-RUN cd /www; yarn
+RUN cd /www; yarn install --ignore-engines
 
 # Copy app source
 COPY . /www
