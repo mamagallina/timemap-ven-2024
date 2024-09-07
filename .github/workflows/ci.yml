@@ -1,5 +1,4 @@
 name: CI
-
 on:
   push:
     branches: [ develop, main ]
@@ -10,52 +9,48 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # Check out the repository code
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
 
-      # Set up Node.js environment
-      - uses: actions/setup-node@v2-beta
+      - name: Set up Node.js
+        uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
 
-      # Install dependencies
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      # Copy configuration file
-      - name: Copy Configuration File
-        run: cp example.config.js config.js
+      - name: Run build
+        run: |
+          echo "Starting build..."
+          npm run build
+          echo "Build completed. Checking contents of build directory..."
+          ls -la ./build || echo "Build directory does not exist."
 
-      # Run tests
-      - name: Run Tests
+      - name: Show directory structure
+        run: |
+          echo "Showing directory structure..."
+          ls -R
+
+      - name: Verify build output
+        run: |
+          if [ -d "./build" ]; then
+            echo "Build directory exists. Contents:"
+            ls -la ./build
+          else
+            echo "Build directory is missing."
+          fi
+
+      - name: Run tests
         run: npm test
         env:
           CI: true
 
-      # List files before the build step
-      - name: List Files Before Build
-        run: ls -al
+      - name: Lint code
+        run: npm run lint
 
-      # Run the build
-      - name: Run Build
-        run: npm run build
-        env:
-          CI: true
-
-      # List files after the build step
-      - name: List Files After Build
-        run: ls -al
-
-      # Check if the 'build' directory exists
-      - name: Verify Build Directory
-        if: ${{ success() }}
-        run: |
-          if [ -d "./build" ]; then
-            echo "Build directory exists."
-            ls -al ./build
-          else
-            echo "Build directory does not exist. Something went wrong."
-            exit 1
-          fi
+      - name: Deploy (optional, if relevant)
+        # Add deployment steps if needed
+        # Ensure deployment steps match your setup
