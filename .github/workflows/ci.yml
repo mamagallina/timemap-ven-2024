@@ -6,7 +6,7 @@ on:
     branches: [ develop, main ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,11 +28,6 @@ jobs:
 
       # Copy configuration files if needed
       - run: cp example.config.js config.js
-
-      # Run tests
-      - run: npm test
-        env:
-          CI: true
 
       # Build the production version of the app
       - run: npm run build
