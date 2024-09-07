@@ -1,5 +1,3 @@
-Kshitij CI 
-
 name: CI
 on:
   push:
