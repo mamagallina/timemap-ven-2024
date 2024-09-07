@@ -1,3 +1,5 @@
+Kshitij CI 
+
 name: CI
 on:
   push:
@@ -6,41 +8,21 @@ on:
     branches: [ develop, main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout the repository
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
-
-      # Setup Node.js environment
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2-beta
         with:
-          node-version: '14.15.5'
+          node-version: '12'
 
-      # Install specific npm version
-      - run: npm install -g npm@6.14.11  # Install npm version 6.14.11
-
-      # Install dependencies
       - run: npm install --legacy-peer-deps
-
-      # Copy configuration files if needed
       - run: cp example.config.js config.js
-
-      # Build the production version of the app
+      - run: npm test
+        env:
+          CI: true
       - run: npm run build
         env:
           CI: true
-
-      # Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build  # Use Webpack output directory
-
-      # Optionally, disable Jekyll (if needed)
-      - name: Disable Jekyll
-        run: touch build/.nojekyll
