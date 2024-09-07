@@ -1,9 +1,9 @@
 name: CI
 on:
   push:
-    branches: [ develop, main ]
+    branches: [develop, main]
   pull_request:
-    branches: [ develop, main ]
+    branches: [develop, main]
 
 jobs:
   test:
@@ -15,7 +15,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2-beta
+        uses: actions/setup-node@v2
         with:
           node-version: '12'
 
@@ -50,7 +50,3 @@ jobs:
 
       - name: Lint code
         run: npm run lint
-
-      - name: Deploy (optional, if relevant)
-        # Add deployment steps if needed
-        # Ensure deployment steps match your setup
