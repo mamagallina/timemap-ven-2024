@@ -6,18 +6,30 @@ on:
     branches: [ develop, main ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
+
+      # Setup Node.js environment
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '14'
 
+      # Install specific npm version
+      - run: npm install -g npm@6.14.11  # Install npm version 6.14.11
+
+      # Install dependencies
       - run: npm install --legacy-peer-deps
+
+      # Copy configuration files if needed
       - run: cp example.config.js config.js
+
+      # Build the production version of the app
       - run: npm run build
         env:
           CI: true
