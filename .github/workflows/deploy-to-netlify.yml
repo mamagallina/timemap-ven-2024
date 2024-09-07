@@ -1,0 +1,42 @@
+name: Deploy to Netlify
+
+on:
+  push:
+    branches: [violencia-policial]  # Trigger the workflow on push to the specified branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🐯 Obtener código del repositorio
+        uses: actions/checkout@v3
+
+      - name: 🐝 Usar Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+
+      - name: Instalar Yarn
+        run: npm install -g yarn
+
+      - name: Crear .env
+        run: |
+          touch .env
+          echo MAPBOX_TOKEN=${{ secrets.MAPBOX_TOKEN }} >> .env
+          echo URL_API=${{ secrets.URL_API }} >> .env
+          cat .env
+
+      - name: 🔨 Instalar dependencias y construir proyecto
+        run: |
+          yarn install
+          yarn build
+
+      - name: 🚀 Deploy to Netlify
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=./build --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
