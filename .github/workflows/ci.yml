@@ -1,52 +1,29 @@
-name: CI
+name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [develop, main]
-  pull_request:
-    branches: [develop, main]
+    branches:
+      - main  # Set this to the branch you want to deploy from
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '14'  # Use the appropriate Node.js version
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Run build
-        run: |
-          echo "Starting build..."
-          npm run build
-          echo "Build completed. Checking contents of build directory..."
-          ls -la ./build || echo "Build directory does not exist."
+      - name: Build project
+        run: npm run build
 
-      - name: Show directory structure
-        run: |
-          echo "Showing directory structure..."
-          ls -R
-
-      - name: Verify build output
-        run: |
-          if [ -d "./build" ]; then
-            echo "Build directory exists. Contents:"
-            ls -la ./build
-          else
-            echo "Build directory is missing."
-          fi
-
-      - name: Run tests
-        run: npm test
-        env:
-          CI: true
-
-      - name: Lint code
-        run: npm run lint
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
+        with:
+          publish_dir: ./build  # Directory where your build output is located
