@@ -8,19 +8,41 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
-      - uses: actions/setup-node@v2-beta
+
+      # Setup Node.js environment
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
 
+      # Install dependencies
       - run: npm install --legacy-peer-deps
+
+      # Copy configuration files if needed
       - run: cp example.config.js config.js
+
+      # Run tests
       - run: npm test
         env:
           CI: true
+
+      # Build the production version of the app
       - run: npm run build
         env:
           CI: true
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build  # Use Webpack output directory
+
+      # Optionally, disable Jekyll (if needed)
+      - name: Disable Jekyll
+        run: touch build/.nojekyll
