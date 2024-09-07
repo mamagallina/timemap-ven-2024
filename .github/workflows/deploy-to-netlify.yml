@@ -33,6 +33,9 @@ jobs:
           yarn install
           yarn build
 
+      - name: 🔍 List Build Directory Contents
+        run: ls -al ./build  # Check if build directory has content
+
       - name: 🚀 Deploy to Netlify
         uses: netlify/actions/cli@master
         with:
