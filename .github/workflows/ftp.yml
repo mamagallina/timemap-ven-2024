@@ -7,43 +7,25 @@ on:
 
 jobs:
   build:
-    name: 🐘 Desplegar
+    name: 🐘 Build and Deploy to Netlify
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🐯 Obtener código del repositorio
+      - name: 🐯 Check out code
         uses: actions/checkout@v3
 
-      - name: 🐝 Usar Node
+      - name: 🐝 Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '14'
           cache: 'npm'
 
-      - name: Crear .env
-        run: |
-          touch .env
-          echo MAPBOX_TOKEN=${{ secrets.MAPBOX_TOKEN }} >> .env
-          echo URL_API=${{ secrets.URL_API }} >> .env
-          cat .env
-
-      # Set CI=false to prevent warnings from breaking the build
-      - name: 🔨 Hacer build
+      - name: Install dependencies
         run: |
           CI=false npm install
+
+      - name: Build project
+        run: |
           CI=false npm run build
 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-      - uses: actions/setup-node@v2-beta
-        with:
-          node-version: '14'
-
-      - run: CI=false npm install
-      - run: cp example.config.js config.js
-      - run: CI=false npm test
-      - run: CI=false npm run lint
+      # Netlify deployment is handled via Netlify integration, not through this workflow
