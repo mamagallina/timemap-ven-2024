@@ -18,10 +18,14 @@ jobs:
       - run: npm install --legacy-peer-deps
       - run: cp example.config.js config.js
       - run: CI=false npm run build  # Set CI to false to ignore warnings
-      
-      # Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.DATAMAP_TOKEN }}
-          publish_dir: ./build  # Adjust this path if your build output directory is different
+
+      # Install Netlify CLI
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      # Deploy to Netlify
+      - name: Deploy to Netlify
+        run: netlify deploy --prod --dir=./build --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
